@@ -54,5 +54,122 @@ function atualizarIndicadores() {
     document.getElementById("chamadosConcluidos").textContent = concluidos;
 }
 
-// Executa a atualização ao carregar a página
+// Exibe os chamados na tabela
+function renderizarChamados() {
+
+    const listaChamados = document.getElementById("listaChamados");
+
+    // Limpa a tabela antes de preencher novamente
+    listaChamados.innerHTML = "";
+
+    chamados.forEach(function(chamado) {
+
+        const linha = document.createElement("tr");
+
+        // Criando as cinco primeiras colunas
+        const dados = [
+            chamado.id,
+            chamado.solicitante || "Não informado",
+            chamado.titulo,
+            chamado.categoria,
+            chamado.prioridade
+        ];
+
+        dados.forEach(function(valor) {
+
+            const coluna = document.createElement("td");
+
+            coluna.textContent = valor;
+
+            linha.appendChild(coluna);
+        });
+
+        // Criando a coluna de status
+        const colunaStatus = document.createElement("td");
+
+        const seletorStatus = document.createElement("select");
+
+        // Opções disponíveis
+        const statusDisponiveis = [
+            "Aberto",
+            "Em andamento",
+            "Concluído"
+        ];
+
+        statusDisponiveis.forEach(function(status) {
+
+            const opcao = document.createElement("option");
+
+            opcao.value = status;
+            opcao.textContent = status;
+
+            seletorStatus.appendChild(opcao);
+        });
+
+        // Mostra o status atual do chamado
+        seletorStatus.value = chamado.status;
+
+        // Detecta quando o usuário altera o status
+        seletorStatus.addEventListener("change", function() {
+
+            chamado.status = seletorStatus.value;
+
+            // Atualiza os indicadores do painel
+            atualizarIndicadores();
+
+            console.log("Status atualizado:", chamado);
+        });
+
+        colunaStatus.appendChild(seletorStatus);
+
+        linha.appendChild(colunaStatus);
+
+        listaChamados.appendChild(linha);
+    });
+}
+
+// Selecionando os elementos do formulário
+const formulario = document.getElementById("formChamado");
+
+const solicitante = document.getElementById("solicitante");
+const titulo = document.getElementById("titulo");
+const descricao = document.getElementById("descricao");
+const categoria = document.getElementById("categoria");
+const prioridade = document.getElementById("prioridade");
+
+console.log("Sistema de Chamados iniciado!");
+
+// Evento de envio do formulário
+formulario.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    // Criando um novo chamado com os dados do formulário
+    const novoChamado = {
+        id: chamados.length + 1,
+        solicitante: solicitante.value,
+        titulo: titulo.value,
+        descricao: descricao.value,
+        categoria: categoria.value,
+        prioridade: prioridade.value,
+        status: "Aberto"
+    };
+
+    // Adicionando o chamado à lista
+    chamados.push(novoChamado);
+
+    // Atualizando os indicadores
+    atualizarIndicadores();
+
+    // Atualizando a tabela
+    renderizarChamados();
+
+    // Limpando o formulário
+    formulario.reset();
+
+    console.log("Chamado cadastrado:", novoChamado);
+});
+
+// Executa as funções ao carregar a página
 atualizarIndicadores();
+renderizarChamados();

@@ -43,6 +43,84 @@
 
             </div>
         </section>
+
+        
+        <section class="formulario">
+            <h2>Abrir novo chamado</h2>
+            <p>Preencha os dados abaixo para registrar uma solicitação.</p>
+
+            <form id="formChamado">
+
+                <div class="campo">
+                    <label for="solicitante">Nome do solicitante</label>
+                    <input type="text" id="solicitante"
+                        placeholder="Digite seu nome" required>
+                </div>
+
+                <div class="campo">
+                    <label for="titulo">Título do chamado</label>
+                    <input type="text" id="titulo"
+                        placeholder="Ex: Computador não liga" required>
+                </div>
+
+                <div class="campo">
+                    <label for="descricao">Descrição do problema</label>
+                    <textarea id="descricao" rows="4"
+                        placeholder="Descreva o problema..." required></textarea>
+                </div>
+
+                <div class="campo">
+                    <label for="categoria">Categoria</label>
+                    <select id="categoria" required>
+                        <option value="">Selecione uma categoria</option>
+                        <option value="Hardware">Hardware</option>
+                        <option value="Software">Software</option>
+                        <option value="Rede">Rede</option>
+                        <option value="Impressora">Impressora</option>
+                        <option value="Outros">Outros</option>
+                    </select>
+                </div>
+
+                <div class="campo">
+                    <label for="prioridade">Prioridade</label>
+                    <select id="prioridade" required>
+                        <option value="">Selecione a prioridade</option>
+                        <option value="Baixa">Baixa</option>
+                        <option value="Média">Média</option>
+                        <option value="Alta">Alta</option>
+                    </select>
+                </div>
+
+                <button type="submit">Abrir chamado</button>
+
+            </form>
+        </section>
+
+        <section class="lista-chamados">
+
+            <h2>Lista de Chamados</h2>
+            <p>Acompanhe as solicitações registradas no sistema.</p>
+
+            <div class="tabela-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nº</th>
+                            <th>Solicitante</th>
+                            <th>Título</th>
+                            <th>Categoria</th>
+                            <th>Prioridade</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="listaChamados">
+                        <!-- Os chamados serão inseridos pelo JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
         
     </main>
 

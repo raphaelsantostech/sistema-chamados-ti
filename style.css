@@ -94,3 +94,112 @@ section h2 {
         grid-template-columns: 1fr;
     }
 }
+
+
+/* Formulário de abertura de chamados */
+.formulario {
+    background-color: white;
+    padding: 30px;
+    margin-top: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.formulario h2 {
+    color: #0f172a;
+    margin-bottom: 10px;
+}
+
+.formulario > p {
+    color: #64748b;
+    margin-bottom: 25px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+}
+
+.campo label {
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #334155;
+}
+
+.campo input,
+.campo textarea,
+.campo select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+}
+
+.campo input:focus,
+.campo textarea:focus,
+.campo select:focus {
+    outline: none;
+    border-color: #2563eb;
+}
+
+.formulario button {
+    background-color: #2563eb;
+    color: white;
+    padding: 13px 24px;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.formulario button:hover {
+    background-color: #1d4ed8;
+}
+
+
+/* Seção da lista de chamados */
+.lista-chamados {
+    background-color: #ffffff;
+    padding: 30px;
+    margin: 20px auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Área que permite rolagem horizontal */
+.tabela-container {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+/* Estrutura da tabela */
+.lista-chamados table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px;
+}
+
+/* Cabeçalho */
+.lista-chamados th {
+    background-color: #0f172a;
+    color: #ffffff;
+    padding: 14px;
+    text-align: left;
+}
+
+/* Células */
+.lista-chamados td {
+    padding: 14px;
+    border-bottom: 1px solid #e2e8f0;
+    color: #334155;
+}
+
+/* Linhas da tabela */
+.lista-chamados tbody tr:hover {
+    background-color: #f1f5f9;
+}
