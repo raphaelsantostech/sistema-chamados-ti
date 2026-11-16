@@ -1,6 +1,11 @@
 
-// Lista inicial de chamados fictícios
-const chamados = [
+// Recupera os chamados salvos no navegador
+const chamadosSalvos = localStorage.getItem("chamados");
+
+// Lista de chamados
+const chamados = chamadosSalvos
+    ? JSON.parse(chamadosSalvos)
+    : [
     {
         id: 1,
         titulo: "Computador não liga",
@@ -30,6 +35,11 @@ const chamados = [
         status: "Aberto"
     }
 ];
+
+// Salva os chamados no navegador
+function salvarChamados() {
+    localStorage.setItem("chamados", JSON.stringify(chamados));
+}
 
 // Atualiza os indicadores do painel
 function atualizarIndicadores() {
@@ -117,6 +127,9 @@ function renderizarChamados() {
             // Atualiza os indicadores do painel
             atualizarIndicadores();
 
+            // Salva os chamados no navegador
+            salvarChamados();
+
             console.log("Status atualizado:", chamado);
         });
 
@@ -157,6 +170,9 @@ formulario.addEventListener("submit", function(event) {
 
     // Adicionando o chamado à lista
     chamados.push(novoChamado);
+
+    // Salvando os chamados no navegador
+    salvarChamados();
 
     // Atualizando os indicadores
     atualizarIndicadores();

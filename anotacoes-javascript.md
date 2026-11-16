@@ -234,3 +234,92 @@ Envia as alterações para o GitHub.
 ## 7. Objetivo de aprendizagem
 
 Consolidar conhecimentos em desenvolvimento web, praticando a integração entre HTML, CSS e JavaScript por meio de um projeto funcional, com evolução gradual das funcionalidades.
+
+## Persistência de dados com localStorage
+
+### O que é localStorage?
+
+O `localStorage` permite armazenar informações diretamente no navegador. Os dados permanecem disponíveis mesmo depois de atualizar a página ou fechar e abrir o navegador.
+
+### Métodos utilizados
+
+**1. localStorage.getItem()**
+
+Recupera um dado armazenado no navegador.
+
+```javascript
+const chamadosSalvos = localStorage.getItem("chamados");
+```
+
+**2. JSON.parse()**
+
+Converte um texto JSON em um objeto ou array JavaScript.
+
+```javascript
+JSON.parse(chamadosSalvos);
+```
+
+**3. JSON.stringify()**
+
+Converte um objeto ou array JavaScript em texto JSON.
+
+```javascript
+JSON.stringify(chamados);
+```
+
+**4. localStorage.setItem()**
+
+Armazena uma informação no navegador.
+
+```javascript
+localStorage.setItem("chamados", JSON.stringify(chamados));
+```
+
+### Função salvarChamados()
+
+Criamos uma função responsável por salvar a lista de chamados:
+
+```javascript
+function salvarChamados() {
+    localStorage.setItem("chamados", JSON.stringify(chamados));
+}
+```
+
+### Recuperação dos chamados
+
+No início do arquivo `script.js`, utilizamos:
+
+```javascript
+const chamadosSalvos = localStorage.getItem("chamados");
+
+const chamados = chamadosSalvos
+    ? JSON.parse(chamadosSalvos)
+    : [
+        // Chamados iniciais
+    ];
+```
+
+O operador ternário verifica se existem chamados salvos. Se existirem, recupera os dados. Caso contrário, utiliza a lista inicial.
+
+### Quando salvar os dados?
+
+Chamamos `salvarChamados()` em dois momentos:
+
+- Depois de cadastrar um novo chamado, após `chamados.push(novoChamado)`.
+- Depois de alterar o status de um chamado.
+
+### Resultado no projeto
+
+Agora os chamados cadastrados e suas alterações de status permanecem salvos no navegador após atualizar a página.
+
+**Importante:** o localStorage armazena os dados apenas naquele navegador e dispositivo. Ele não sincroniza automaticamente os dados entre o computador de casa e o computador do trabalho. Para isso, futuramente precisaremos de um backend com banco de dados.
+
+### Novos conceitos aprendidos
+
+- localStorage
+- getItem()
+- setItem()
+- JSON.parse()
+- JSON.stringify()
+- Persistência de dados
+- Operador ternário
